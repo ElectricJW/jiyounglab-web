@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+/*
+  JIYOUNGLAB design tokens (Phase 3A).
+  Layout concept: an exam-paper grid. A cool paper ground, printed "sheets" as the hero objects,
+  deep-ink type, and OMR-card red used only where a decision is made (buy, sale, marked answer).
+  Every color is a token; dark mode redefines tokens only. Printed sheets stay paper-colored in
+  both themes because they represent physical documents.
+*/
+:root {
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #edf0f5;
+  --ink: #0f1a33;
+  --ink-2: #47526a;
+  --ink-3: #5e687c;
+  --on-ink: #ffffff;
+  --line: #dde2ea;
+  --line-strong: #c3cad6;
+  --omr: #c42e48;
+  --omr-ink: #ffffff;
+  --omr-soft: #fbe8eb;
+  --free: #0f7366;
+  --free-soft: #e0f1ee;
+  --navy-soft: #e5eaf4;
+  --night: #0f1a33;
+  --on-night: #f5f7fa;
+  --focus: #2c59d1;
+
+  /* Material-type hues: muted, used on cover stripes and small badges only */
+  --t-transform: #1f3d8f;
+  --t-grammar: #6a3d9a;
+  --t-vocab: #0d6c87;
+  --t-writing: #94570c;
+  --t-analysis: #3b5266;
+  --t-package: #0f1a33;
+  --t-free: #0f7366;
+
+  /* Printed sheets */
+  --sheet: #ffffff;
+  --sheet-ink: #15181f;
+  --sheet-mute: #5c6270;
+  --sheet-line: #d9dce3;
+  --sheet-omr: #c2384d;
+
+  --shadow-sheet: 0 1px 2px rgb(15 26 51 / 0.06), 0 12px 32px -12px rgb(15 26 51 / 0.18);
+  --shadow-pop: 0 24px 64px -24px rgb(15 26 51 / 0.35);
+
+  --font-display: "Hahmlet", "Noto Serif KR", "AppleMyungjo", serif;
+  --font-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sheet: "Hahmlet", "Times New Roman", serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0a0f19;
+    --surface: #111827;
+    --surface-2: #182236;
+    --ink: #e7ebf3;
+    --ink-2: #a7b0c2;
+    --ink-3: #9099ad;
+    --on-ink: #0a0f19;
+    --line: #232e45;
+    --line-strong: #33415f;
+    --omr: #f0627a;
+    --omr-ink: #1a0a0e;
+    --omr-soft: #3a1820;
+    --free: #45c3af;
+    --free-soft: #0e2c28;
+    --navy-soft: #1a2541;
+    --night: #1b2744;
+    --on-night: #f5f7fa;
+    --focus: #7ea0ff;
+    --t-transform: #8eaaf5;
+    --t-grammar: #c4a2ec;
+    --t-vocab: #6fcbe6;
+    --t-writing: #e9b46a;
+    --t-analysis: #a9bdd0;
+    --t-package: #e7ebf3;
+    --t-free: #45c3af;
+    --sheet: #e8ebf0;
+    --sheet-ink: #15181f;
+    --sheet-mute: #555b68;
+    --sheet-line: #c9cdd6;
+    --sheet-omr: #b02f44;
+    --shadow-sheet: 0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+    --shadow-pop: 0 24px 64px -24px rgb(0 0 0 / 0.8);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0a0f19;
+  --surface: #111827;
+  --surface-2: #182236;
+  --ink: #e7ebf3;
+  --ink-2: #a7b0c2;
+  --ink-3: #9099ad;
+  --on-ink: #0a0f19;
+  --line: #232e45;
+  --line-strong: #33415f;
+  --omr: #f0627a;
+  --omr-ink: #1a0a0e;
+  --omr-soft: #3a1820;
+  --free: #45c3af;
+  --free-soft: #0e2c28;
+  --navy-soft: #1a2541;
+  --night: #1b2744;
+  --on-night: #f5f7fa;
+  --focus: #7ea0ff;
+  --t-transform: #8eaaf5;
+  --t-grammar: #c4a2ec;
+  --t-vocab: #6fcbe6;
+  --t-writing: #e9b46a;
+  --t-analysis: #a9bdd0;
+  --t-package: #e7ebf3;
+  --t-free: #45c3af;
+  --sheet: #e8ebf0;
+  --sheet-ink: #15181f;
+  --sheet-mute: #555b68;
+  --sheet-line: #c9cdd6;
+  --sheet-omr: #b02f44;
+  --shadow-sheet: 0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+  --shadow-pop: 0 24px 64px -24px rgb(0 0 0 / 0.8);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-on-ink: var(--on-ink);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-omr: var(--omr);
+  --color-omr-ink: var(--omr-ink);
+  --color-omr-soft: var(--omr-soft);
+  --color-free: var(--free);
+  --color-free-soft: var(--free-soft);
+  --color-navy-soft: var(--navy-soft);
+  --color-night: var(--night);
+  --color-on-night: var(--on-night);
+  --color-focus: var(--focus);
+  --color-sheet: var(--sheet);
+  --color-sheet-ink: var(--sheet-ink);
+  --color-sheet-mute: var(--sheet-mute);
+  --color-sheet-line: var(--sheet-line);
+  --color-sheet-omr: var(--sheet-omr);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-sheet: var(--font-sheet);
+  --shadow-sheet: var(--shadow-sheet);
+  --shadow-pop: var(--shadow-pop);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--omr-soft);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 32px;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .prose-jy {
+    max-width: 68ch;
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+  .prose-jy h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-top: 2.6em;
+    margin-bottom: 0.7em;
+    scroll-margin-top: 96px;
+  }
+  .prose-jy h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+  .prose-jy p {
+    margin-block: 1.1em;
+  }
+  .prose-jy ul {
+    list-style: disc;
+    padding-left: 1.3em;
+    margin-block: 1em;
+  }
+  .prose-jy li {
+    margin-block: 0.35em;
+  }
+  .prose-jy blockquote {
+    border-left: 3px solid var(--omr);
+    padding-left: 1em;
+    color: var(--ink-2);
+    margin-block: 1.6em;
+  }
+  .prose-jy strong {
+    font-weight: 600;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes jy-mark {
+  0%, 35% { transform: scale(0); opacity: 0; }
+  55% { transform: scale(1.15); opacity: 1; }
+  70%, 100% { transform: scale(1); opacity: 1; }
+}
+@keyframes jy-rise {
+  from { transform: translateY(10px); opacity: 0.55; }
+  to { transform: none; opacity: 1; }
+}
+.anim-mark {
+  animation: jy-mark 1.6s cubic-bezier(.2,.7,.2,1) both;
+}
+.anim-rise {
+  animation: jy-rise 0.7s cubic-bezier(.2,.7,.2,1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-mark, .anim-rise {
+    animation: none;
+  }
+}
